@@ -29,7 +29,7 @@ File > New Project
 
 2) Replace the body of MainActivity.java of the module "mobile" with the provided code.
 Basically just a java.net.Socket inside a java.util.concurrent.Executors.newCachedThreadPool().submit() block.
-Change server address and port according to your specific configuration.
+Change server address and port constants according to your specific configuration.
 
 3) Get your server ready.
 
