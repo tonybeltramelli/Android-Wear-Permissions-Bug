@@ -8,9 +8,19 @@ Sending and receiving data with socket is possible without internet permission i
 
 Without the explicit permission "android.permission.INTERNET" defined in the "AndroidManifest.xml" file, socket connections to a remote server are still possible. This issue allow any program to send and receive data over the internet without the user explicitly granting this permission to the application. Both user interaction or program thread can triggered incoming/outgoing communication.
 
+According to Google's guidelines, any dangerous permissions requested by an application may be displayed to the user and require confirmation before proceeding. The permission allowing applications to open network sockets is categorized as "dangerous".
+
+```xml
+	<permission android:name="android.permission.INTERNET"
+        android:permissionGroup="android.permission-group.NETWORK"
+        android:protectionLevel="dangerous" />
+```
+
+This vulnerability allow any attacker to ship a legit application on Google Play store with a backdoor allowing communication with its server without the user permission. The number of possible attacks leveraged by such a vulnerability can lead to serious threats (privacy leak, user tracking, remote code execution, DDoS, and many more...).
+
 ##Note
 
-The problem occured only with a Phone/Wear application, a "traditional" Phone application require as expected the internet permission to be defined in the manifest file. 
+The problem proved to occur with a Phone/Wear application, a "traditional" Phone application require as expected the internet permission to be defined in the manifest file. 
 
 ##Development environment
 
