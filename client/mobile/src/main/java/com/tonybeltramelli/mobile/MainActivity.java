@@ -28,15 +28,21 @@ public class MainActivity extends Activity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Button for user triggered socket communication
         Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(this);
 
+        // Thread triggered socket communication
         Runnable sendDataToServer = new Runnable() {
             public void run() {
                 _send("Send from thread scheduler.");
             }
         };
         Executors.newSingleThreadScheduledExecutor().schedule(sendDataToServer, 1000, TimeUnit.MILLISECONDS);
+
+        // Scan through all permissions and access which ones are granted
+        PermissionScanner _scanner = new PermissionScanner(getApplicationContext());
+        System.out.println(_scanner.scan());
     }
 
     @Override
@@ -59,13 +65,15 @@ public class MainActivity extends Activity implements View.OnClickListener
                     Socket socket = new Socket(address, port);
                     try
                     {
+                        // Outgoing data to server
                         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                         out.println(data);
                         Log.d(this.getClass().getName(), "Send data to " + address + ":" + port);
 
+                        // Incoming message from server
                         BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                        String data = input.readLine();
-                        Log.d(this.getClass().getName(), "Message from server: " + data);
+                        String message = input.readLine();
+                        Log.d(this.getClass().getName(), "Message from server: " + message);
                     } finally
                     {
                         socket.close();
