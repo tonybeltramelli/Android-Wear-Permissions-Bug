@@ -1,4 +1,4 @@
-# AndroidNetworkVulnerability
+# Android-Wear-Permissions-Vulnerability
 
 ##Vulnerability
 
