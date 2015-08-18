@@ -15,9 +15,9 @@ Protection level: dangerous
 - android.permission.USE_CREDENTIALS
 - android.permission.WRITE_EXTERNAL_STORAGE
 
-##Note
+This vulnerability only happen with a Phone/Wear project. With a regular Phone application, none of the permissions are granted (as expected, the permissions need to be defined in the manifest file) and the socket communication example below return an exception "SocketException: socket failed: EACCES (Permission denied)".
 
-The problem proved to occur with a Phone/Wear application, a "traditional" Phone application require as expected the internet permission to be defined in the manifest file.
+The funny thing is that it is not needed to publish both the "mobile" and the "wear" modules for the vulnerabily to happen, it only require to build the "mobile" module, install the apk on a smartphone running Android 5.1 and the permissions are granted by default.
 
 ##Development environment
 
@@ -64,8 +64,8 @@ File > New Project
 2) In the module "mobile", replace the body of MainActivity.java with the provided code and get the class PermissionScanner.java.
 Change server address and port constants according to your specific configuration.
 
-3) To prove that a communication channel is successfully established, get your server ready.
+3) To prove that a communication channel is successfully established, get your server up and running.
 
-4) Compile module "mobile" (from Android Studio or Gradle), install, and run the application.
+4) Compile the module "mobile" (from Android Studio or Gradle), install, and run the application on a compatible device.
 
-5) Here you go, your application is now able to send/receive messages to/from your remote server while no permission was defined in the manifest file.
+5) Here you go, your application is now able to send/receive messages to/from your remote server while no permission was defined in the manifest file to allow this.
