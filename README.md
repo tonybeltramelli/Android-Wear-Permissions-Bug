@@ -15,7 +15,7 @@ Protection level: dangerous
 - android.permission.USE_CREDENTIALS
 - android.permission.WRITE_EXTERNAL_STORAGE
 
-This vulnerability only happen with a Phone/Wear project. With a regular Phone application, none of the permissions are granted (as expected, the permissions need to be defined in the manifest file) and the socket communication example below return an exception "SocketException: socket failed: EACCES (Permission denied)".
+This vulnerability only happen with a Phone/Wear project. With a regular Phone application, none of the permissions are granted (as expected, the permissions need to be defined in the manifest file) and the socket communication example below return an exception *SocketException: socket failed: EACCES (Permission denied)*.
 
 The funny thing is that it is not needed to publish both the "mobile" and the "wear" modules for the vulnerabily to happen, it only require to build the "mobile" module, install the apk on a smartphone running Android 5.1 and the permissions are granted by default.
 
