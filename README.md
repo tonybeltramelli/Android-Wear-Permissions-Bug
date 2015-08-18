@@ -55,17 +55,19 @@ This vulnerability allow any attacker to ship a legit application on Google Play
 
 ###Steps to reproduce
 
-1) Create project Phone/Wear project on Android Studio:
-File > New Project
-- Select: Phone And Tablet with Minimum SDK "API 22: Android 5.1 (Lollipop)"
-- Select: Wear with Minimum SDK "API 21: Android 5.0 (Lollipop)"
-- Select Blank Activity for both Phone and Wear
+1. Create project Phone/Wear project on Android Studio:
+    1. File > New Project
+    2. Select: Phone And Tablet with Minimum SDK "API 22: Android 5.1 (Lollipop)"
+    3. Select: Wear with Minimum SDK "API 21: Android 5.0 (Lollipop)"
+    4. Select Blank Activity for both Phone and Wear
 
-2) In the module "mobile", replace the body of MainActivity.java with the provided code and get the class PermissionScanner.java.
-Change server address and port constants according to your specific configuration.
+2. In the module "mobile":
+    1. Replace MainActivity.java and activity_main.xml with the provided code
+    2. Get the provided files PermissionScanner.java and permissions.xml
+    3. Change server address and port constants according to your specific configuration
 
-3) To prove that a communication channel is successfully established, get your server up and running.
+3. To prove that a communication channel is successfully established, get your server up and running.
 
-4) Compile the module "mobile" (from Android Studio or Gradle), install, and run the application on a compatible device.
+4. Compile the module "mobile" (from Android Studio or Gradle), install, and run the application on a compatible device.
 
-5) Here you go, your application is now able to send/receive messages to/from your remote server while no permission was defined in the manifest file to allow this.
+5. Here you go, your application is now able to send/receive messages to/from your remote server while no permission was defined in the manifest file to allow this.
