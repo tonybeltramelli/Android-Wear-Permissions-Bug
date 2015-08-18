@@ -21,10 +21,10 @@ The funny thing is that it is not needed to publish both the "mobile" and the "w
 
 ##Development environment
 
-OS X 10.10.4
-Android Studio 1.2.2
-Android phone/tablet: API 22: Android 5.1 (Lollipop) (Tested on Nexus 4, 6, and 9)
-Android wear: API 21: Android 5.0 (Lollipop)
+* OS X 10.10.4
+* Android Studio 1.2.2
+* Android phone/tablet: API 22: Android 5.1 (Lollipop) (Tested on Nexus 4, 6, and 9)
+* Android wear: API 21: Android 5.0 (Lollipop)
 
 ##Example: Exploit android.permission.INTERNET
 
