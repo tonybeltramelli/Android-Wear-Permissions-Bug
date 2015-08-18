@@ -74,8 +74,8 @@ This vulnerability allow any attacker to ship a legit application on Google Play
 
 ##Note
 
-The example above illustrates a simple case on how the android.permission.INTERNET permission can be exploited but one can imagine what would be possible to do with the other granted permissions:
+The example above illustrates a simple case on how the android.permission.INTERNET permission can be exploited. One can easily imagine the exploit possibilities with the other granted dangerous permissions:
 
 * android.permission.ACCESS_COARSE_LOCATION: Allows an app to access approximate location derived from network location sources such as cell towers and Wi-Fi. This would allow an attacker to silently track a user's location.
 * android.permission.USE_CREDENTIALS: Allows an application to request authtokens from the AccountManager. This would allow an attacker to log into accounts (for example Google, Facebook, and Microsoft Exchange) on behalf of the user.
-* android.permission.WRITE_EXTERNAL_STORAGE: Allows an application to write to external storage. An attacker could potentially store malware or other data on the device external storage.
+* android.permission.WRITE_EXTERNAL_STORAGE: Allows an application to write to external storage. An attacker could potentially store malware or other malicious data on the device external storage.
