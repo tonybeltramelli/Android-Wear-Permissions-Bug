@@ -71,3 +71,11 @@ This vulnerability allow any attacker to ship a legit application on Google Play
 4. Compile the module "mobile" (from Android Studio or Gradle), install, and run the application on a compatible device.
 
 5. Here you go, your application is now able to send/receive messages to/from your remote server while no permission was defined in the manifest file to allow this.
+
+##Note
+
+The example above show a simple example on how the android.permission.INTERNET permission can be exploited but one can imagine what would be possible to do with the other granted permissions:
+
+* android.permission.ACCESS_COARSE_LOCATION: Allows an app to access approximate location derived from network location sources such as cell towers and Wi-Fi. This would allow an attacker to silently track a user's location.
+* android.permission.USE_CREDENTIALS: Allows an application to request authtokens from the AccountManager. This would allow an attacker to log into accounts (for example Google, Facebook, and Microsoft Exchange) on behalf of the user.
+* android.permission.WRITE_EXTERNAL_STORAGE: Allows an application to write to external storage. An attacker could potentially store malware or other data on the device external storage.
