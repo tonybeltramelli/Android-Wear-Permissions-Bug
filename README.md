@@ -1,5 +1,7 @@
 # Android-Wear-Permissions-Vulnerability
 
+The vulnerability was communicated to Google the 13/08/2015 [security bug report #182733](https://code.google.com/p/android/issues/detail?id=182733)
+
 ##Vulnerability
 
 The following permissions are granted to the application even when they haven't been explicitely defined in the manifest file:
