@@ -1,10 +1,16 @@
-# Android-Wear-Permissions-Vulnerability
+# Android-Wear-Permissions-Bug
 
-The vulnerability was communicated to Google the 13/08/2015 [security bug report #182733](https://code.google.com/p/android/issues/detail?id=182733).
+Github repo related to [this blog post](http://tonybeltramelli.com/lab.php?id=48).
 
-##Vulnerability
+This bug was initially thought to lead to a vulnerability. In a nutshell, the bug leads applications targeting Android Wear to grant some permissions without them being explicitly defined in the manifest file. A responsible disclosure process was thus initiated with Google to fix the issue (the 13/08/2015, security [security bug report #182733](https://code.google.com/p/android/issues/detail?id=182733).). After further investigations, the problem turned out to be a bug in the Android SDK with no serious security implications towards users:
 
-The discovered vulnerability allows the following permissions to be granted automatically to applications without the user granting them and without being explicitly defined in the manifest file:
+"Android Studio appears to be implicitly adding the permissions of all linked libraries into the generated apk for an app. Specifically, in this case it's pulling in permissions that Google-Play services requires. [...] What this means is that any app created in this manner that comes in through the Play store (or any store that displays app permissions) will correctly list all the permissions being used by the app. Consequently, there isn't any risk to users because no hidden permissions are being granted to these apps (from a platform point of view. I definitely agree that it's hidden from the manifest source in Android Studio)."
+
+I think it is worth mentioning that if the Google Play store was not displaying the list of permissions to the user at download time, the bug would have to be considered a vulnerability. The bug and the discovery process are described below.
+
+##Bug
+
+The discovered bug allows the following permissions to be granted automatically to applications without the user granting them and without being explicitly defined in the manifest file:
 
 Protection level: normal
 - android.permission.ACCESS_NETWORK_STATE
@@ -17,9 +23,9 @@ Protection level: dangerous
 - android.permission.USE_CREDENTIALS
 - android.permission.WRITE_EXTERNAL_STORAGE
 
-This vulnerability only happens with a Phone/Wear project. With a regular Phone application, none of the permissions are granted (as expected, the permissions need to be defined in the manifest file) and the socket communication example detailed below returns an exception *SocketException: socket failed: EACCES (Permission denied)*.
+This only happens with a Phone/Wear project. With a regular Phone application, none of the permissions are granted (as expected, the permissions need to be defined in the manifest file) and the socket communication example detailed below returns an exception *SocketException: socket failed: EACCES (Permission denied)*.
 
-The funny thing is that it is not needed to publish both the "mobile" and the "wear" modules for the vulnerability to happen, it only require to build the "mobile" module, install the apk on a smartphone running Android 5.1 and the permissions are granted by default.
+The funny thing is that it is not needed to publish both the "mobile" and the "wear" modules for the bug to happen, it only require to build the "mobile" module, install the apk on a smartphone running Android 5.1 and the permissions are granted by default.
 
 ##Development environment
 
@@ -48,12 +54,12 @@ Log.d(this.getClass().getName(), "Internet permission granted: " + (result == Pa
 According to Google's guidelines, any dangerous permissions requested by an application may be displayed to the user and require confirmation before proceeding. The permission allowing applications to open network sockets is categorized as "dangerous".
 
 ```xml
-	<permission android:name="android.permission.INTERNET"
+    <permission android:name="android.permission.INTERNET"
         android:permissionGroup="android.permission-group.NETWORK"
         android:protectionLevel="dangerous" />
 ```
 
-This vulnerability allows any attacker to ship a legit application on Google Play store with a backdoor allowing communication with its server without the user permission. The number of possible attacks leveraged by such a vulnerability can lead to serious threats (privacy leak, user tracking, remote code execution, DDoS, and many more...).
+If Google Play store was hiding the permissions that are bypassing the manifest file, this vulnerability would allow any attacker to ship a legit application on Google Play store with a backdoor allowing communication with its server without the user being aware of it. The number of possible attacks leveraged by such a vulnerability could lead to serious threats (privacy leak, user tracking, remote code execution, DDoS, and many more...).
 
 ###Steps to reproduce
 
