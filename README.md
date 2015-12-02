@@ -1,6 +1,6 @@
 # Android-Wear-Permissions-Bug
 
-Github repo related to [this blog post](http://tonybeltramelli.com/lab.php?id=48).
+Github repo to support [this blog post](http://tonybeltramelli.com/lab.php?id=48).
 
 This bug was initially thought to lead to a vulnerability. In a nutshell, the bug leads applications targeting Android Wear to grant some permissions without them being explicitly defined in the manifest file. A responsible disclosure process was thus initiated with Google to fix the issue (the 13/08/2015, security [security bug report #182733](https://code.google.com/p/android/issues/detail?id=182733).). After further investigations, the problem turned out to be a bug in the Android SDK with no serious security implications towards users:
 
